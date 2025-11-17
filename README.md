@@ -1,18 +1,18 @@
 # Amplitude-Modulation
 
-EXP NO: 1	GENERATION AND DETECTION OF AM
+# EXP NO: 1	GENERATION AND DETECTION OF AM
 
-AIM:
+# AIM:
 
 To generate and detect the amplitude modulation and demodulation u s i n g S C I L A B and to calculate modulation index of AM.
 
-EQUIPMENTS REQUIRED
+# EQUIPMENTS REQUIRED
 
 •	Computer with i3 Processor
 
 •	SCI LAB
 
-THEORY:
+# THEORY:
 
 Modulation can be defined as the process by which the characteristics of carrier wave are varied in accordance with the modulating wave (signal). Modulation is performed in a transmitter by a circuit called a modulator.
 Need for modulation is as follows:
@@ -31,7 +31,7 @@ Amplitude Modulation is the process of changing the amplitude of a relatively hi
 
 Note: Keep all the switch faults in off position
 
-Algorithm
+# Algorithm
 1.	Define Parameters
 First, define the parameters for your signals:
 •	Carrier frequency (fc)
@@ -74,31 +74,73 @@ Compare the original modulating signal with the demodulated signal. PROCEDURE
 •	If any Error, correct it in code and execute again
 •	Verify the generated waveform using Tabulation and Model Waveform
 
-Program
+# Program
+```
+Ac = 19.8;
+Am = 9.9;
+Fc = 6500;
+Fm = 650;
+Fs = 92000;
+t = 0:1/Fs:2/Fm;
+e1 = (Ac*sin(2*3.14*Fm*t));
+subplot(4,1,1);
+plot(t,e1);
+xgrid;
+title('Message Signal');
+xlabel('Time');
+ylabel('Amplitude');
+
+e2 = (Ac*sin(2*3.14*Fc*t));
+subplot(4,1,2);
+plot(t,e2);
+xgrid;
+title('Carrier Signal');
+xlabel('Time');
+ylabel('Amplitude');
+
+e3 = (Ac + (Am*sin(2*3.14*Fm*t))).*sin(2*3.14*Fc*t);
+subplot(4,1,3);
+plot(t,e3);
+xgrid;
+title('AM Modulated Signal');
+xlabel('Time');
+ylabel('Amplitude');
+
+demodulated_signal = abs(hilbert(e3)) - Ac;
+subplot(4,1,4);
+plot(t,demodulated_signal);
+xgrid;
+title('Demodulated Signal');
+xlabel('Time');
+ylabel('Amplitude');
+
+```
+
+
+# Output Waveform
+
+<img width="1920" height="1200" alt="ac1" src="https://github.com/user-attachments/assets/87efb9ca-cbc5-4a1c-b021-c48162b910d0" />
 
 
 
-Output Waveform
+
+# TABULATION:
+
+<img width="1280" height="1204" alt="image" src="https://github.com/user-attachments/assets/7483fdd0-e39f-46ea-a991-4193460f4e1e" />
+<img width="1280" height="1060" alt="image" src="https://github.com/user-attachments/assets/a248c2a5-79e3-47ea-95fd-b97d24325c07" />
 
 
+## Calculation
+1.	ma (Theory) = am/ac = 9.9/19.8 = 0.5
+2.	ma(Practical) = (Emax-Emin)/(Emax+Emin) = 0.5
 
 
-
-TABULATION:
-
-
-
-Calculation
-1.	ma (Theory) = am/ac =
-2.	ma(Practical) = (Emax-Emin)/(Emax+Emin) =
-
-
-MODEL GRAPH
+# MODEL GRAPH
  <img width="919" height="1290" alt="image" src="https://github.com/user-attachments/assets/55326c5b-7dd5-4873-aaf6-d219bb7c4420" />
 
  
  
 
 
-RESULT:
+# RESULT:
 Thus the amplitude modulation and demodulation is experimentally done and the output is verified.
